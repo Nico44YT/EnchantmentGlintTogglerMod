@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "enchantment_glint_toggler",
+  "version": "${version}",
+  "name": "EnchantmentGlintToggler",
+  "description": "",
+  "authors": [
+    "Nico_44"
+  ],
+  "contact": {},
+  "license": "GPL-3.0",
+  "icon": "assets/enchantment_glint_toggler/icon.png",
+  "environment": "*",
+  "entrypoints": {
+  },
+  "mixins": [
+    "enchantment_glint_toggler.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
