@@ -10,7 +10,6 @@ base {
     archivesName = project.archives_base_name
 }
 
-
 repositories {
     // Add repositories to retrieve artifacts from in here.
     // You should only use this when depending on other mods because
@@ -32,6 +31,7 @@ processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_req_version", project.minecraft_req_version
     inputs.property "loader_version", project.loader_version
+    inputs.property "java_version", project.java_version
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
@@ -39,9 +39,13 @@ processResources {
                 "minecraft_req_version": project.minecraft_req_version,
                 "loader_version": project.loader_version
     }
+
+    filesMatching("enchantment_glint_toggler.mixins.json") {
+        expand "java_version": project.java_version
+    }
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = Integer.parseInt(project.java_version);
 tasks.withType(JavaCompile).configureEach {
     // ensure that the encoding is set to UTF-8, no matter what the system default is
     // this fixes some edge cases with special characters not displaying correctly
@@ -90,3 +94,5 @@ tasks.register("collect-jars") {
         }
     }
 }
+
+build.finalizedBy(tasks.named("collect-jars"))
